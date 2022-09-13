@@ -1,0 +1,210 @@
+---
+in_ec_groups: 
+  - ec_group: # Solar radiation S and W
+      id: sol_group
+      ecs:
+      - Sol_S
+      - Sol_W
+  - ec_group: # Wind velocity WPA and WPB 100
+      id: wind_group_100
+      ecs:
+      - Wind_WPA_100
+      - Wind_WPB_100
+  - ec_group: # Wind velocity WPA and WPB 125
+      id: wind_group_125
+      ecs:
+      - Wind_WPA_125
+      - Wind_WPB_125
+
+technology_definitions:
+- tech: #SolarThermal_FlatPlateCollectors
+    node_class: converter
+    component: STC
+    type: FPC
+    id: STC_FPC
+    name: Solar Thermal Flat Plate Collectors
+    constraints_efficiency:
+      eta_0: 0.693
+      a1: 4.39
+      a2: 0.018
+      abs_coeff: 0.90
+      thermal_capacitance: 12.5
+      capacity_unit: m2
+    constraints_general:
+      lifetime_years: 20
+      unit_cap_min: 0
+      TRL:
+        - [2015, 8]
+        - [2020, 11]
+      last_installation_year: inf
+      max_cap_sys: inf 
+    constraints_conversion:
+      min_out_yearly: 0
+      max_out_yearly: inf
+      min_load: 0
+      max_load: 1
+      costs_om_per_energy: 0
+    costs:
+      unit: CHF
+      interest_rate_ref: high
+      inv_fix: 8420
+      inv_per_cap: 1300
+      om_fix: 0
+      om_per_cap: 0
+    emissions:
+      inv_fix_CO2: 0
+      inv_per_cap_CO2: 0
+
+- tech: #SolarThermal_EvacuatedTubeCollectors
+    node_class: converter
+    component: STC
+    type: ETC
+    id: STC_ETC
+    name: Solar Thermal Evacuated Tube Collectors
+    constraints_efficiency:
+      eta_0: 0.719
+      a1: 1.063
+      a2: 0.005
+      abs_coeff: 0.92
+      thermal_capacitance: 14.1
+      capacity_unit: m2
+    constraints_general:
+      lifetime_years: 20
+      unit_cap_min: 0
+      TRL:
+        - [2015, 8]
+        - [2020, 11]
+      last_installation_year: inf
+      max_cap_sys: inf 
+    constraints_conversion:
+      min_out_yearly: 0
+      max_out_yearly: inf
+      min_load: 0
+      max_load: 1
+      costs_om_per_energy: 0
+    costs:
+      unit: CHF
+      interest_rate_ref: high
+      inv_fix: 8420
+      inv_per_cap: 1380
+      om_fix: 0
+      om_per_cap: 0
+    emissions:
+      inv_fix_CO2: 0
+      inv_per_cap_CO2: 0   
+      
+- tech: #ThermalEnergyStorage_HotWaterTank
+    node_class: storage
+    component: HWT
+    type: Puffer
+    id: HWT_Puffer
+    name: Hot Water Tank for 
+    constraints_efficiency:
+      efficiency_class: B
+      volume_range: high # higher than 2000 lt
+      capacity_unit: m3
+    constraints_general:
+      lifetime_years: 20
+      unit_cap_min: 0
+      TRL:
+        - [2015, 8]
+        - [2020, 11]
+      last_installation_year: inf
+      max_cap_sys: inf 
+    constraints_conversion:
+      min_out_yearly: 0
+      max_out_yearly: inf
+      min_load: 0
+      max_load: 1
+      costs_om_per_energy: 0
+    costs:
+      unit: CHF
+      interest_rate_ref: high
+      inv_fix: 8420
+      inv_per_cap: 1380
+      om_fix: 0
+      om_per_cap: 0
+    emissions:
+      inv_fix_CO2: 0
+      inv_per_cap_CO2: 0
+
+- tech: #BoreholeThermalEnergyStorage
+    node_class: storage
+    component: BTES
+    type: Cylindrical
+    id: BTES_Cyl
+    name: Cylindrical BTES 
+    constraints_efficiency:
+      lambda_ground: 2.0
+      cv_ground: 2500
+      lambda_ins: 0.04
+      thickness_ins: 0.20
+      insdepth_to_height: 0.1
+      height_to_diameter: 1.0
+      capacity_unit: m3
+    constraints_general:
+      lifetime_years: 20
+      unit_cap_min: 0
+      TRL:
+        - [2015, 8]
+        - [2020, 11]
+      last_installation_year: inf
+      max_cap_sys: inf 
+    constraints_conversion:
+      min_out_yearly: 0
+      max_out_yearly: inf
+      min_load: 0
+      max_load: 1
+      costs_om_per_energy: 0
+    costs:
+      unit: CHF
+      interest_rate_ref: high
+      inv_fix: 8420
+      inv_per_cap: 1380
+      om_fix: 0
+      om_per_cap: 0
+    emissions:
+      inv_fix_CO2: 0
+      inv_per_cap_CO2: 0
+      
+      
+- tech: #BoreholeThermalEnergyStorage
+    node_class: storage
+    component: BTES
+    type: Parallelepip
+    id: BTES_Par
+    name: Parallelepipedical BTES 
+    constraints_efficiency:
+      lambda_ground: 2.0
+      cv_ground: 2500
+      lambda_ins: 0.04
+      thickness_ins: 0.20
+      insdepth_to_height: 0.1
+      length_to_height: 
+      width_to_height:
+      volume_range: high # higher than 2000 lt
+      capacity_unit: m3
+    constraints_general:
+      lifetime_years: 20
+      unit_cap_min: 0
+      TRL:
+        - [2015, 8]
+        - [2020, 11]
+      last_installation_year: inf
+      max_cap_sys: inf 
+    constraints_conversion:
+      min_out_yearly: 0
+      max_out_yearly: inf
+      min_load: 0
+      max_load: 1
+      costs_om_per_energy: 0
+    costs:
+      unit: CHF
+      interest_rate_ref: high
+      inv_fix: 8420
+      inv_per_cap: 1380
+      om_fix: 0
+      om_per_cap: 0
+    emissions:
+      inv_fix_CO2: 0
+      inv_per_cap_CO2: 0

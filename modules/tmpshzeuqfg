@@ -1,0 +1,70 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Tue May 10 11:56:22 2022
+
+@author: vija
+"""
+
+import numpy as np
+
+class obj(object):
+    '''
+        A small class which can have attributes set
+    '''
+    pass
+
+# Lake module
+    
+class lake:
+    
+    def __init__(self, lake_data, params):
+        
+        
+        # initialize objects
+        self.data   = obj()    
+        self.params = obj()
+        
+        # read data and parameters
+        self.data.L      = lake_data['length']
+        self.data.W      = lake_data['width']
+        self.data.A_surf = lake_data['surf_area']
+        self.data.h      = lake_data['depth']  
+        self.data.ext_coeff = lake_data['extinction_coeff']
+        
+        self.params.nx   = params['nx']
+        self.params.days = params['days']
+        self.data.dx     = self.data.h/self.params.nx
+        
+        self.data.depth_range  = np.linspace(0,self.params.nx,self.params.nx)
+        self.data.area_range  = np.linspace(self.data.A_surf,0,self.params.nx)
+
+               
+        # thermocline depth
+        self.data.z_therm = self.thermocline_depth(self.data.L,self.data.W)
+        # thermocline area
+        self.data.A_therm = self.data.A_surf*(self.data.z_therm/self.data.h)
+        
+        # water volume of the lake
+        self.data.V      = 1/3*self.data.A_surf*self.data.h
+        # water volume of the hypolymnion
+        self.data.V_hypo = 1/3*self.data.A_therm*self.data.z_therm
+        # water volume of the epilymnion
+        self.data.V_epi  = self.data.V - self.data.V_hypo 
+        
+        # light transmission through water column
+        self.data.light_fraction = self.light_extinction(self.data.ext_coeff, 
+                                                         self.data.depth_range)
+        
+        
+        
+    def thermocline_depth(self, L, W):
+        #
+        # Hanna M. (1990): Evaluation of Models predicting Mixing Depth. 
+        # Can. J. Fish. Aquat. Sci. 47: 940-947
+        #
+        z_therm = 10**(0.336*np.log10(max(L,W))-0.245)
+        return z_therm
+    
+    def light_extinction(self, ext_coeff, depth_range):
+        light_fraction = 1 * np.exp(-ext_coeff*depth_range)
+        return light_fraction

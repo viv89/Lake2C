@@ -1,0 +1,6 @@
+{'latitude': 53.9,
+ 'length': 2000.0,
+ 'surf_area': 3950000.0,
+ 'volume': 65045242.3,
+ 'width': 1300.0,
+ 'extinction_coeff':0.98}   
