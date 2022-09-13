@@ -1,6 +1,0 @@
-{'latitude': 57.1,
- 'length': 3152.89,
- 'surf_area': 5131152.86,
- 'volume': 7530000,
- 'width': 1955.97,
- 'depth': 4.4}   
