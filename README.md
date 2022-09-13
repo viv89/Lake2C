@@ -9,7 +9,7 @@ Project Info
 
 References
 ============
-
+- Note than this is a public version for reviewers (see reference below). The full code can only be accessible by members of EMPA's Urban Energy Systems Lab on [Model Overview](https://gitlab.empa.ch/ues-lab/tools/model-overview-wiki/-/wikis/home). 
 - Eggimann et al (2022) The potential of lake-source district heating and cooling for European buildings. Submitted for Review.
 
 Installation & Usage
@@ -25,8 +25,6 @@ Outline here how to install and use your project/code. For Python projects, this
 
 Models
 ============
-
-If your repository contains any model, please add one description block per model to your README (see example below). It will then automatically get added to the [Model Overview](https://gitlab.empa.ch/ues-lab/tools/model-overview-wiki/-/wikis/home). Clusters of models with the same type can be aggregated into one description block. If your repository does not contain any model, you must delete this section (incl. description block).
 
 ```
 Name: Thermal lake model 
